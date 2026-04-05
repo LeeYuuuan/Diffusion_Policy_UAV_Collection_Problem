@@ -1,0 +1,96 @@
+{
+  "seeds": {
+    "map_seed": 42,
+    "exp_seed": 43,
+    "env_dyn_offset": 0,
+    "agent_offset": 1,
+    "eval_offset": 2
+  },
+  "env": {
+    "world_size": 400.0,
+    "step_move_sec": 10.0,
+    "step_collect_sec": 50.0,
+    "n_uavs": 3,
+    "cov_radius": 86.6,
+    "lam": 0.05,
+    "cold_start_dt": 60.0,
+    "oob_penalty": 5.0,
+    "oob_penalty_scale": 5.0,
+    "team_max_sum_weight": 0.3,
+    "max_before_weight": 1.0,
+    "ratio_reward": true,
+    "ratio_weight": 10.0,
+    "return_to_center_every": 10
+  },
+  "user_gen": {
+    "n_users": 50,
+    "cluster_ratio": 0.7,
+    "n_clusters": 4,
+    "cluster_std": 20.0
+  },
+  "obs": {
+    "mode": "lv+uav+topk",
+    "topk_oldest": 1
+  },
+  "chunk": {
+    "chunk_len": 1,
+    "exec_len": 1,
+    "execute_mode": "first_k",
+    "keep_unused_tail": false
+  },
+  "diffusion": {
+    "denoise_steps": 8,
+    "train_diffusion_steps": 32,
+    "beta_schedule": "cosine",
+    "predict_type": "eps",
+    "action_low": -50.0,
+    "action_high": 50.0,
+    "hidden_dim": 256,
+    "cond_dim": 256,
+    "time_embed_dim": 128,
+    "n_blocks": 4,
+    "n_heads": 4,
+    "dropout_p": 0.0,
+    "q_guidance_weight": 0.1,
+    "bc_weight": 1.0,
+    "clip_grad_norm": 10.0
+  },
+  "critic": {
+    "mode": "state_action",
+    "state_horizon": 1,
+    "hidden_dim": 256,
+    "dropout_p": 0.0,
+    "twin_q": true,
+    "target_tau": 0.005,
+    "gamma": 0.99,
+    "clip_grad_norm": 10.0
+  },
+  "adapter": {
+    "adapter_type": "structured",
+    "actor_condition_horizon": 1,
+    "critic_condition_horizon": 1,
+    "include_uav_tokens": true,
+    "include_sensor_tokens": true,
+    "include_topk_tokens": true,
+    "include_global_token": true,
+    "uav_history_len": 1
+  },
+  "replay": {
+    "capacity": 100000,
+    "batch_size_critic": 128,
+    "batch_size_actor": 128,
+    "actor_chunk_len": 1,
+    "allow_cross_episode_chunk": false
+  },
+  "train": {
+    "num_episodes": 200,
+    "num_timestep": 100,
+    "warmup_steps": 1000,
+    "updates_per_env_step": 1,
+    "lr_actor": 0.0003,
+    "lr_critic": 0.0003,
+    "eval_every": 5,
+    "return_every": 10,
+    "print_every": 1
+  }
+}

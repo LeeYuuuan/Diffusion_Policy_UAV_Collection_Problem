@@ -1,0 +1,37 @@
+Experiment name: uav3_1_1
+
+Config summary:
+- n_uavs = 3
+- world_size = 400.0
+- cov_radius = 86.6
+- lam = 0.05
+- obs_mode = lv+uav+topk
+- topk_oldest = 1
+- chunk_len = 1
+- exec_len = 1
+- predict_type = eps
+- train_diffusion_steps = 32
+- hidden_dim = 256
+- n_blocks = 4
+- n_heads = 4
+- bc_weight = 1.0
+- q_guidance_weight = 0.1
+- critic_state_horizon = 1
+- gamma = 0.99
+- target_tau = 0.005
+- batch_size_actor = 128
+- batch_size_critic = 128
+- replay_capacity = 100000
+- num_episodes = 200
+- num_timestep = 100
+- warmup_steps = 1000
+- lr_actor = 0.0003
+- lr_critic = 0.0003
+- eval_every = 5
+- return_to_center_every = 10
+
+User notes:
+This experiment tests the diffusion policy under the forced-return setting.
+The UAVs are forced to return to the airship center every 10 executed steps.
+The goal is to make the policy learn more trajectories that start from the center,
+which is more consistent with the upper-level dispatch / charging logic.

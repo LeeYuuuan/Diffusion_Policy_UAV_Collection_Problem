@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: uav_diffusion_project
+Version: 0.1.0
+Summary: Diffusion policy project for UAV collection problem
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+
+# Diffusion_Policy_UAV_Collection_Problem
